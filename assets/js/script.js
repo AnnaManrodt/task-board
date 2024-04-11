@@ -39,24 +39,31 @@ function createTaskCard(taskItem) {
   console.log(taskItem);
     //for (let i = 0; i < taskItem.length; i++){
     let toDo = $("<div>")
-    toDo.addClass('card');
+    toDo.addClass('card project-card draggable my-3');
     toDo.addClass('drag');
     toDo.attr('draggable', 'true');
-    let button = $("<button>");
-    button.addClass("btn btn-danger");
-    toDo.append(button);
+    let Deletebutton = $('<button>');
+    Deletebutton.addClass("btn btn-outline-danger btn-sm delete");
+    Deletebutton.text('delete');
+    console.log(toDo)
+    toDo.append(Deletebutton);
     // ondragstart='exampleDrag(event)'"
-    toDo.text(`title: ${taskItem.title}, 
-    task description: ${taskItem.decs},
-    due date: ${taskItem.date}`);
+    let text = $("<p>")
+let cardTitle = taskItem.title
+console.log(cardTitle)
+    text.text(`title: ${taskItem.title}, 
+      task description: ${taskItem.decs},
+      due date: ${taskItem.date}`);
+      toDo.append(text);
     toDoCard.append(toDo);
     return taskItem
   }
 
-
-
-
-// Todo: create a function to render the task list and make cards draggable
+//   let test = $("#test");
+//   let button = $("<button>");
+//   button.addClass("btn btn-danger");
+//   test.append(button);
+// // Todo: create a function to render the task list and make cards draggable
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
@@ -147,10 +154,10 @@ getFromStorage();
 // }
 
 
-$(document).ready(function() {
-  $('.drag').on('dragstart', function(e) {
-    e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
-  });
+// $(document).ready(function() {
+//   $('.drag').on('dragstart', function(e) {
+//     e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
+//   });
 
 //   $('#todo-cards').on('dragover', function(e){
 //     e.preventDefault();
@@ -175,33 +182,33 @@ $(document).ready(function() {
 //     }
 //   })
 
-  $('#in-progress').on('dragover', function(e) {
-    e.preventDefault();
-  });
+//   $('#in-progress').on('dragover', function(e) {
+//     e.preventDefault();
+//   });
 
-  $('#in-progress').on('drop', function(e) {
-    e.preventDefault();
-    var data = e.originalEvent.dataTransfer.getData('text/plain');
-    if (data === 'draggedItem') {
-      $(this).text("worked");
-    }
-  });
-});
+//   $('#in-progress').on('drop', function(e) {
+//     e.preventDefault();
+//     var data = e.originalEvent.dataTransfer.getData('text/plain');
+//     if (data === 'draggedItem') {
+//       $(this).text("worked");
+//     }
+//   });
+// });
 
 
-$().ready(function() {
-  $('.drag').on('dragstart', function(e) {
-    e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
-  });
-  $('#done-cards').on('dragover', function(e){
-    e.preventDefault();
-  })
+// $().ready(function() {
+//   $('.drag').on('dragstart', function(e) {
+//     e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
+//   });
+//   $('#done-cards').on('dragover', function(e){
+//     e.preventDefault();
+//   })
 
-  $('#done-cards').on('drop', function(e){
-    e.preventDefault();
-    var data = e.originalEvent.dataTransfer.getData('text/plain');
-    if (data === "draggedItem"){
-      $(this).text("work");
-    }
-  })
-});
+//   $('#done-cards').on('drop', function(e){
+//     e.preventDefault();
+//     var data = e.originalEvent.dataTransfer.getData('text/plain');
+//     if (data === "draggedItem"){
+//       $(this).text("work");
+//     }
+//   })
+// });
