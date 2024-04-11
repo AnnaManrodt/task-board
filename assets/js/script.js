@@ -25,8 +25,11 @@ function generateTaskId() {
 }
 
 function renderAllCards(){
+  const toDo = $('#todo-cards');
+  toDo.empty();
   for( let i = 0; i < taskArray.length; i++ ){
     const taskItem = taskArray[i]
+    // createTaskCard(taskItem).appendTo(toDo);
     createTaskCard(taskItem)
   }
 }
@@ -39,16 +42,20 @@ function createTaskCard(taskItem) {
     toDo.addClass('card');
     toDo.addClass('drag');
     toDo.attr('draggable', 'true');
+    let button = $("<button>");
+    button.addClass("btn btn-danger");
+    toDo.append(button);
     // ondragstart='exampleDrag(event)'"
     toDo.text(`title: ${taskItem.title}, 
-    task describtion: ${taskItem.decs},
-    due date: ${taskItem.date}
-    `);
+    task description: ${taskItem.decs},
+    due date: ${taskItem.date}`);
     toDoCard.append(toDo);
+    return taskItem
   }
 
 
-handleDragOver()
+
+
 // Todo: create a function to render the task list and make cards draggable
 
 // Todo: create a function to handle adding a new task
