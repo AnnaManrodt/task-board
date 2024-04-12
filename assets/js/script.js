@@ -42,10 +42,15 @@ function createTaskCard(taskItem) {
     toDo.addClass('card project-card draggable my-3');
     toDo.addClass('drag');
     toDo.attr('draggable', 'true');
-// const cardTitle = $('<div>').addClass('card-header h4').text(taskItem.title);
-// const cardBody = $("<div>").addClass('card-body');
-// const cardDecs = $("<p>").addClass('card-text').text(taskItem.decs);
-// const cardDueDate = $('<p>').addClass('card-text').text(taskItem.date);
+const cardTitle = $('<div>').addClass('card-header h4').text(taskItem.title);
+const cardBody = $("<div>").addClass('card-body');
+const cardDecs = $("<p>").addClass('card-text').text(taskItem.decs);
+const cardDueDate = $('<p>').addClass('card-text').text(taskItem.date);
+
+toDo.append(cardTitle);
+toDo.append(cardBody);
+cardBody.append(cardDecs);
+cardBody.append(cardDueDate);
   let button = $('<button>');
   button.addClass("btn btn-outline-danger btn-sm delete");
   button.text('delete');
@@ -57,10 +62,6 @@ function createTaskCard(taskItem) {
 
     ondragstart='exampleDrag(event)';
     let text = $("<p>")
-
-    text.text(`title: ${taskItem.title}, 
-      task description: ${taskItem.decs},
-      due date: ${taskItem.date}`);
       toDo.append(text);
     toDoCard.append(toDo);
     return taskItem
@@ -207,7 +208,7 @@ function exampleDropOver(e){
       e.preventDefault();
       var data = e.originalEvent.dataTransfer.getData('text/plain');
       if (data === "draggedItem"){
-        $(this).text();
+        $(this).text("");
     }
   })
 
@@ -231,7 +232,7 @@ function exampleDropOver(e){
     e.preventDefault();
     var data = e.originalEvent.dataTransfer.getData('text/plain');
     if (data === 'draggedItem') {
-      $(this).text("worked");
+      $(this).text();
     }
   });
 });
