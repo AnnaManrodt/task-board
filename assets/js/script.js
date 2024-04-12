@@ -57,9 +57,6 @@ cardBody.append(cardDueDate);
   button.attr('data-project-id', taskItem.id);
   console.log(toDo)
   toDo.append(button);
-  // Deletebutton.on('click', handleDeleteTask())
-  //this 
-
     ondragstart='exampleDrag(event)';
     let text = $("<p>")
       toDo.append(text);
@@ -74,6 +71,7 @@ change task itme color to red green
 change task item background color to 
 }
 else task color should eb blue */
+deleteCard(button);
   }
 
 //   let test = $("#test");
@@ -101,12 +99,19 @@ function handleAddTask(event){
 }
 
 
+// deleteButtons.forEach(function(button) {
+//     button.addEventListener('click', function() {
+//         deleteCard(this); // Call deleteCard function with the clicked button as an argument
+//     });
+// });
+
   function deleteCard(button) {
-    // Get the parent element (card) of the clicked button
+    $('.delete').on('click', function(){
     var card = button.parentNode;
     // Remove the card from the card container
-    card.parentNode.removeChild(card);}
-
+    card.parentNode.removeChild(card);})
+    };
+ 
 
 
 function updateState() {
@@ -208,7 +213,7 @@ function exampleDropOver(e){
       e.preventDefault();
       var data = e.originalEvent.dataTransfer.getData('text/plain');
       if (data === "draggedItem"){
-        $(this).text("");
+        $(this).text("work");
     }
   })
 
@@ -232,7 +237,7 @@ function exampleDropOver(e){
     e.preventDefault();
     var data = e.originalEvent.dataTransfer.getData('text/plain');
     if (data === 'draggedItem') {
-      $(this).text();
+      $(this).text("work");
     }
   });
 });
