@@ -46,14 +46,14 @@ function createTaskCard(taskItem) {
 // const cardBody = $("<div>").addClass('card-body');
 // const cardDecs = $("<p>").addClass('card-text').text(taskItem.decs);
 // const cardDueDate = $('<p>').addClass('card-text').text(taskItem.date);
-let button = $('<button>');
-button.addClass("btn btn-outline-danger btn-sm delete");
-button.text('delete');
-button.attr('data-project-id', taskItem.id);
-console.log(toDo)
-toDo.append(button);
-// Deletebutton.on('click', handleDeleteTask())
-//this 
+  let button = $('<button>');
+  button.addClass("btn btn-outline-danger btn-sm delete");
+  button.text('delete');
+  button.attr('data-project-id', taskItem.id);
+  console.log(toDo)
+  toDo.append(button);
+  // Deletebutton.on('click', handleDeleteTask())
+  //this 
 
     ondragstart='exampleDrag(event)';
     let text = $("<p>")
@@ -68,13 +68,11 @@ toDo.append(button);
 
     /*if (taskItem //is in to do){
 change task itme color to red green
- }
+}
  else if (taskItem //is in in progress){
 change task item background color to 
 }
 else task color should eb blue */
-
-
   }
 
 //   let test = $("#test");
@@ -101,14 +99,13 @@ function handleAddTask(event){
   renderAllCards();
 }
 
-function deletCard (){
+
   function deleteCard(button) {
     // Get the parent element (card) of the clicked button
     var card = button.parentNode;
     // Remove the card from the card container
     card.parentNode.removeChild(card);}
 
-}
 
 
 function updateState() {
@@ -134,9 +131,9 @@ function handleDrop(event, ui) {
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
-$("#taskSubmit").on("click", function(event){
-  handleAddTask(event);
-})
+  $("#taskSubmit").on("click", function(event){
+    handleAddTask(event);
+  })
 // renderTaskList();
 });
 
@@ -161,6 +158,25 @@ $('input').on('input', function() {
 getFromStorage();
 
 
+function handleDrop(e){
+  e.preventDefault()
+  console.log("drop")
+}
+
+function handleDragEnter(e){
+  e.preventDefault()
+  console.log("drag enter")
+}
+
+function handleDragEnd(e){
+  e.preventDefault()
+  console.log("drag end")
+}
+
+function handleDragOver(e){
+  e.preventDefault()
+  console.log("drag over")
+}
 
 ///drag and drop 
 // function exampleDrag(e){
@@ -178,61 +194,62 @@ function exampleDropOver(e){
   e.preventDefault()
 }
 //this works but only for one item in one place and it doesnt put the text i need back into it 
-$(document).ready(function() {
-  $('.drag').on('dragstart', function(e) {
-    e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
-  });
+  $(document).ready(function() {
+    $('.drag').on('dragstart', function(e) {
+      console.log("start drag")
+      e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
+    });
 
-  $('#todo-cards').on('dragover', function(e){
+      $('#todo-cards').on('dragover', function(e){
+        e.preventDefault();
+      })
+    $('#todo-cards').on('drop', function(e){
+      e.preventDefault();
+      var data = e.originalEvent.dataTransfer.getData('text/plain');
+      if (data === "draggedItem"){
+        $(this).text("work");
+    }
+  })
+
+  $('#done-cards').on('dragover', function(e){
     e.preventDefault();
   })
-$('#todo-cards').on('drop', function(e){
-  e.preventDefault();
-  var data = e.originalEvent.dataTransfer.getData('text/plain');
-  if (data === "draggedItem"){
-    $(this).text("work");
-  }
-})
 
-//   $('#done-cards').on('dragover', function(e){
-//     e.preventDefault();
-//   })
+  $('#done-cards').on('drop', function(e){
+    e.preventDefault();
+    var data = e.originalEvent.dataTransfer.getData('text/plain');
+    if (data === "draggedItem"){
+      $(this).text("work");
+    }
+  })
 
-//   $('#done-cards').on('drop', function(e){
-//     e.preventDefault();
-//     var data = e.originalEvent.dataTransfer.getData('text/plain');
-//     if (data === "draggedItem"){
-//       $(this).text("work");
-//     }
-//   })
+  $('#in-progress').on('dragover', function(e) {
+    e.preventDefault();
+  });
 
-//   $('#in-progress').on('dragover', function(e) {
-//     e.preventDefault();
-//   });
-
-//   $('#in-progress').on('drop', function(e) {
-//     e.preventDefault();
-//     var data = e.originalEvent.dataTransfer.getData('text/plain');
-//     if (data === 'draggedItem') {
-//       $(this).text("worked");
-//     }
-//   });
-// });
+  $('#in-progress').on('drop', function(e) {
+    e.preventDefault();
+    var data = e.originalEvent.dataTransfer.getData('text/plain');
+    if (data === 'draggedItem') {
+      $(this).text("worked");
+    }
+  });
+});
 
 
 // $().ready(function() {
-//   $('.drag').on('dragstart', function(e) {
+//   $('.drag').on('dragpver', function(e) {
 //     e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
 //   });
-//   $('#done-cards').on('dragover', function(e){
-//     e.preventDefault();
-//   })
+  $('#done-cards').on('dragover', function(e){
+    e.preventDefault();
+  })
 
-//   $('#done-cards').on('drop', function(e){
-//     e.preventDefault();
-//     var data = e.originalEvent.dataTransfer.getData('text/plain');
-//     if (data === "draggedItem"){
-//       $(this).text("work");
-//     }
-//   })
-});
+  $('#done-cards').on('drop', function(e){
+    e.preventDefault();
+    var data = e.originalEvent.dataTransfer.getData('text/plain');
+    if (data === "draggedItem"){
+      $(this).text("work");
+    }
+  })
+// });
