@@ -207,7 +207,7 @@ function exampleDropOver(e){
       e.preventDefault();
       var data = e.originalEvent.dataTransfer.getData('text/plain');
       if (data === "draggedItem"){
-        $(this).text("work");
+        $(this).text();
     }
   })
 
