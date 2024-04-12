@@ -42,21 +42,39 @@ function createTaskCard(taskItem) {
     toDo.addClass('card project-card draggable my-3');
     toDo.addClass('drag');
     toDo.attr('draggable', 'true');
-    let Deletebutton = $('<button>');
-    Deletebutton.addClass("btn btn-outline-danger btn-sm delete");
-    Deletebutton.text('delete');
-    console.log(toDo)
-    toDo.append(Deletebutton);
-    // ondragstart='exampleDrag(event)'"
+// const cardTitle = $('<div>').addClass('card-header h4').text(taskItem.title);
+// const cardBody = $("<div>").addClass('card-body');
+// const cardDecs = $("<p>").addClass('card-text').text(taskItem.decs);
+// const cardDueDate = $('<p>').addClass('card-text').text(taskItem.date);
+let button = $('<button>');
+button.addClass("btn btn-outline-danger btn-sm delete");
+button.text('delete');
+button.attr('data-project-id', taskItem.id);
+console.log(toDo)
+toDo.append(button);
+// Deletebutton.on('click', handleDeleteTask())
+//this 
+
+    ondragstart='exampleDrag(event)';
     let text = $("<p>")
-let cardTitle = taskItem.title
-console.log(cardTitle)
+
     text.text(`title: ${taskItem.title}, 
       task description: ${taskItem.decs},
       due date: ${taskItem.date}`);
       toDo.append(text);
     toDoCard.append(toDo);
     return taskItem
+//lines 58-66 works but but doesnt look right
+
+    /*if (taskItem //is in to do){
+change task itme color to red green
+ }
+ else if (taskItem //is in in progress){
+change task item background color to 
+}
+else task color should eb blue */
+
+
   }
 
 //   let test = $("#test");
@@ -99,7 +117,14 @@ function updateState() {
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
-
+  const projectId = $(this).attr('data-project-id');
+  const projects = getFromStorage(); 
+  projects.forEach((project) => {
+    if (project.id === projectId) {
+      projects.splice(projects.indexOf(project), 1);
+    }
+  });
+  getFromStorage(taskItem)
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
@@ -143,32 +168,31 @@ getFromStorage();
 //   e.dataTransfer.setData('text/plain', id)
 // }
 
-// function exampleDrop(e){
-//   e.preventDefault()
-//   const data = e.dataTransfer.getData('text/plain')
-//   console.log(data)
-// }
+function exampleDrop(e){
+  e.preventDefault()
+  const data = e.dataTransfer.getData('text/plain')
+  console.log(data)
+}
 
-// function exampleDropOver(e){
-//   e.preventDefault()
-// }
+function exampleDropOver(e){
+  e.preventDefault()
+}
+//this works but only for one item in one place and it doesnt put the text i need back into it 
+$(document).ready(function() {
+  $('.drag').on('dragstart', function(e) {
+    e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
+  });
 
-
-// $(document).ready(function() {
-//   $('.drag').on('dragstart', function(e) {
-//     e.originalEvent.dataTransfer.setData('text/plain', 'draggedItem');
-//   });
-
-//   $('#todo-cards').on('dragover', function(e){
-//     e.preventDefault();
-//   })
-// $('#todo-cards').on('drop', function(e){
-//   e.preventDefault();
-//   var data = e.originalEvent.dataTransfer.getData('text/plain');
-//   if (data === "draggedItem"){
-//     $(this).text("work");
-//   }
-// })
+  $('#todo-cards').on('dragover', function(e){
+    e.preventDefault();
+  })
+$('#todo-cards').on('drop', function(e){
+  e.preventDefault();
+  var data = e.originalEvent.dataTransfer.getData('text/plain');
+  if (data === "draggedItem"){
+    $(this).text("work");
+  }
+})
 
 //   $('#done-cards').on('dragover', function(e){
 //     e.preventDefault();
@@ -211,4 +235,4 @@ getFromStorage();
 //       $(this).text("work");
 //     }
 //   })
-// });
+});
