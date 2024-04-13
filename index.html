@@ -46,8 +46,8 @@
                 <textarea type="text" class="form-control" id="TaskDescInput" ></textarea>
               </div>
               <div class="form-group">
-                <label class="form-check-label" for="exampleCheck1">Task Due Date</label>
-                <input type="date" class="form-control" id="taskDueDate">
+                <label class="form-check-label" for="taskDueDate">Task Due Date</label>
+                <input type="text" class="form-control" id="taskDueDate">
               </div>
               <button type="submit" class="btn btn-success" id="taskSubmit">Add Task</button>
             </form>
@@ -62,32 +62,32 @@
     <!-- Todo: Create a modal with a form to add tasks -->
     <div class="row swim-lanes text-center justify-content-between" >
       <div class="col-12 col-lg-4 d-flex">
-        <div id="to-do" class="card border-light mb-3 lane flex-grow-1"ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragend="handleDragEnd(event)" ondragenter="handleDragEnter(event)">
+        <div id="to-do" class="card border-light mb-3 lane flex-grow-1">
           <div class="card-header bg-white">
             <h2 class="card-title mb-1">To Do</h2>
           </div>
           <div class="card-body bg-light">
-            <div id="todo-cards" "></div>
+            <div id="todo-cards"></div>
           </div>
         </div>
       </div>
       <div class="col-12 col-lg-4 d-flex">
-        <div id="in-progress" class="card border-light mb-3 lane flex-grow-1" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragend="handleDragEnd(event)" ondragenter="handleDragEnter(event)">
+        <div id="in-progress" class="card border-light mb-3 lane flex-grow-1">
           <div class="card-header bg-white">
             <h2 class="card-title mb-1">In Progress</h2>
           </div>
           <div class="card-body bg-light">
-            <div id="in-progress-cards""></div>
+            <div id="in-progress-cards"></div>
           </div>
         </div>
         </div>
         <div class="col-12 col-lg-4 d-flex">
-          <div id="done" class="card border-light mb-3 lane flex-grow-1" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragend="handleDragEnd(event)" ondragenter="handleDragEnter(event)">
+          <div id="done" class="card border-light mb-3 lane flex-grow-1">
             <div class="card-header bg-white">
               <h2 class="card-title mb-1">Done</h2>
             </div>
             <div class="card-body bg-light">
-              <div id="done-cards" "></div>
+              <div id="done-cards"></div>
           </div>
           </div>
       </div>
